@@ -6,4 +6,9 @@
     <Nullable>enable</Nullable>
   </PropertyGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\AtomicFlow.Domain\AtomicFlow.Domain.csproj" />
+    <ProjectReference Include="..\AtomicFlow.SharedKernel\AtomicFlow.SharedKernel.csproj" />
+  </ItemGroup>
+
 </Project>
