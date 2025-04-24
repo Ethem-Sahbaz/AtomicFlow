@@ -25,7 +25,15 @@ internal sealed class RegisterUserCommandService
             return Result.Failure<User>(UserErrors.EmailAlreadyExists);
         }
 
-        return null;
+        Result<User> userCreateResult = User.Create(request.Username, request.Email);
+
+        if (userCreateResult.IsFailure)
+        {
+            return Result.Failure<User>(new("User.CreateFailure", "User could not be created"));
+        }
+
+
+        return userCreateResult.Value;
     }
 }
 

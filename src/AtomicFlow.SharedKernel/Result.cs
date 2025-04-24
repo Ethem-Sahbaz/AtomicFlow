@@ -39,7 +39,7 @@ public class Result<TValue> : Result
     }
 
     private readonly TValue? _value;
-    public TValue? Value => _value is not null ?
+    public TValue Value => _value is not null ?
         _value : throw new InvalidOperationException("Can not access a value of a failure result.");
 
     public static implicit operator Result<TValue> (TValue value) => value is null?
