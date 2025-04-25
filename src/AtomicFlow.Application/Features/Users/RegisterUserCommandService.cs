@@ -18,6 +18,7 @@ internal sealed class RegisterUserCommandService
 
     public async Task<Result<User>> RegisterAsync(RegisterUserRequest request)
     {
+        
         bool emailExists = await _userRepository.EmailExists(request.Email);
 
         if (emailExists)
