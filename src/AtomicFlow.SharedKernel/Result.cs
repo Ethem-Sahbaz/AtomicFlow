@@ -1,7 +1,7 @@
 ﻿namespace AtomicFlow.SharedKernel;
 public class Result
 {
-    public Result(bool isSuccess, Error error)
+    protected Result(bool isSuccess, Error error)
     {
         if ((IsSuccess && error != Error.None) ||
             (!IsSuccess && error == Error.None))
