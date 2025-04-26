@@ -2,8 +2,8 @@
 using AtomicFlow.Domain.Users;
 using AtomicFlow.SharedKernel;
 
-namespace AtomicFlow.Application.Features.Users;
-internal sealed class RegisterUserCommandService
+namespace AtomicFlow.Application.Features.Users.RegisterUser;
+internal sealed class RegisterUserCommandService : IRegisterUserCommandService
 {
     private readonly IUserRepository _userRepository;
     private readonly IIdentityProvider _identityProvider;
@@ -31,8 +31,7 @@ internal sealed class RegisterUserCommandService
         {
             return Result.Failure<User>(new("User.CreateFailure", "User could not be created"));
         }
-
-
+        
         return userCreateResult.Value;
     }
 }

@@ -1,7 +1,7 @@
 ﻿namespace AtomicFlow.SharedKernel;
 public record Error
 {
-    public static readonly Error None = new Error("","");
+    public static readonly Error None = new ("","");
     public static readonly Error NullValue = new("Errors.NullValue", "Null Value was provided");
 
     public Error(string code, string description)

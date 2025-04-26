@@ -3,8 +3,9 @@
 namespace AtomicFlow.Domain.Users;
 public sealed class User
 {
-    private User(string username, string email)
+    private User(Guid id, string username, string email)
     {
+        Id = id;
         Username = username;
         Email = email;
     }
@@ -15,10 +16,8 @@ public sealed class User
 
     public static Result<User> Create(string username, string email)
     {
-        User newUser = new User(username, email);
+        User newUser = new(Guid.NewGuid(), username, email);
 
         return newUser;
     }
-
-
 }

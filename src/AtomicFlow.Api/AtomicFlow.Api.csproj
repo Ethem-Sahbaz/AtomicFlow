@@ -10,4 +10,10 @@
         <PackageReference Include="Microsoft.AspNetCore.OpenApi" Version="9.0.4"/>
     </ItemGroup>
 
+    <ItemGroup>
+      <ProjectReference Include="..\AtomicFlow.Application\AtomicFlow.Application.csproj" />
+      <ProjectReference Include="..\AtomicFlow.Infrastructure\AtomicFlow.Infrastructure.csproj" />
+      <ProjectReference Include="..\AtomicFlow.SharedKernel\AtomicFlow.SharedKernel.csproj" />
+    </ItemGroup>
+
 </Project>

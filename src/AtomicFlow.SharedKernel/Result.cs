@@ -3,8 +3,8 @@ public class Result
 {
     protected Result(bool isSuccess, Error error)
     {
-        if ((IsSuccess && error != Error.None) ||
-            (!IsSuccess && error == Error.None))
+        if ((isSuccess && error != Error.None) ||
+            (isSuccess == false && error == Error.None))
         {
             throw new ArgumentException("Provided parameter combination is invalid.");
         }
@@ -42,6 +42,6 @@ public class Result<TValue> : Result
     public TValue Value => _value is not null ?
         _value : throw new InvalidOperationException("Can not access a value of a failure result.");
 
-    public static implicit operator Result<TValue> (TValue value) => value is null?
-        Result.Success(value) : Result.Failure<TValue>(Error.None);
+    public static implicit operator Result<TValue> (TValue value) => value is not null?
+        Result.Success(value) : Result.Failure<TValue>(Error.NullValue);
 }
