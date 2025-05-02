@@ -1,0 +1,11 @@
+@inject NavigationManager NavigationManager
+
+@code {
+    protected override void OnInitialized()
+    {
+        // The NavigationManager Uri is the url which the user wanted to enter and to which the user gets
+        // redirected to if authenticated.
+        NavigationManager.NavigateTo(
+            $"Account/Login?returnUrl={Uri.EscapeDataString(NavigationManager.Uri)}", forceLoad:true);
+    }
+}
