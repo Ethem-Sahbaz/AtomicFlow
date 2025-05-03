@@ -25,6 +25,7 @@ builder.Services.AddAuth0WebAppAuthentication(options =>
 // });
 
 builder.Services.AddHttpContextAccessor();
+builder.Services.AddHttpForwarder();
 
 var app = builder.Build();
 
@@ -69,6 +70,12 @@ app.MapGet("account/logout", async context =>
     await context.SignOutAsync(Auth0Constants.AuthenticationScheme, logoutProperties);
     // Deletes the auth cookie that asp.net uses to check if user is logged in.
     await context.SignOutAsync(CookieAuthenticationDefaults.AuthenticationScheme, logoutProperties);
+});
+
+// Get destination url from appsettings.
+app.MapForwarder("/api/{**endpoint}", "https://localhost:0001/", transforBuilder =>
+{
+
 });
 
 app.Run();

@@ -7,9 +7,10 @@
     </PropertyGroup>
 
     <ItemGroup>
-        <ProjectReference Include="..\AtomicFlow.Blazor.Client\AtomicFlow.Blazor.Client.csproj"/>
+        <PackageReference Include="Yarp.ReverseProxy" Version="2.3.0" />
+        <ProjectReference Include="..\AtomicFlow.Blazor.Client\AtomicFlow.Blazor.Client.csproj" />
         <PackageReference Include="Auth0.AspNetCore.Authentication" Version="1.4.1" />
-        <PackageReference Include="Microsoft.AspNetCore.Components.WebAssembly.Server" Version="9.0.4"/>
+        <PackageReference Include="Microsoft.AspNetCore.Components.WebAssembly.Server" Version="9.0.4" />
     </ItemGroup>
 
 </Project>
