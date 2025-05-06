@@ -1,8 +1,10 @@
+using AtomicFlow.Blazor;
+using AtomicFlow.Blazor.Client.Services;
 using AtomicFlow.Blazor.Components;
 using Auth0.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authentication.Cookies;
-using Microsoft.AspNetCore.Authorization;
+using Yarp.ReverseProxy.Transforms;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -25,6 +27,13 @@ builder.Services.AddAuth0WebAppAuthentication(options =>
 
 builder.Services.AddHttpContextAccessor();
 builder.Services.AddHttpForwarder();
+builder.Services.AddTransient<ForwarderServerHttpHandler>();
+builder.Services.AddScoped<IHabitService, HabitsService>();
+
+builder.Services.AddHttpClient(nameof(HabitsService), config =>
+{
+    config.BaseAddress = new Uri("https://localhost:7141");
+}).ConfigurePrimaryHttpMessageHandler<ForwarderServerHttpHandler>();
 
 var app = builder.Build();
 
@@ -72,9 +81,15 @@ app.MapGet("account/logout", async context =>
 });
 
 // Get destination url from appsettings.
-app.MapForwarder("/api/{**endpoint}", "https://localhost:0001/", transforBuilder =>
+app.MapForwarder("/{**endpoint}", builder.Configuration["API:Url"]!, transformBuilder =>
 {
-
-});
+    transformBuilder.AddRequestTransform(async requestTransformContext =>
+    {
+        string? token = await requestTransformContext.HttpContext.GetTokenAsync("access_token");
+        // Use ProxyRequest for adding the access token to the header.
+        requestTransformContext.ProxyRequest.Headers.Authorization = new("Bearer", token);
+    });
+})
+.RequireAuthorization();
 
 app.Run();

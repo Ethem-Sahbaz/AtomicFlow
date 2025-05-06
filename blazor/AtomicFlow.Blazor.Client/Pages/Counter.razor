@@ -1,4 +1,6 @@
 ﻿@page "/counter"
+@using AtomicFlow.Blazor.Client.Services
+@inject IHabitService HabitsService
 
 <PageTitle>Counter</PageTitle>
 
@@ -11,8 +13,10 @@
 @code {
     private int currentCount = 0;
 
-    private void IncrementCount()
+    private async Task IncrementCount()
     {
+        await HabitsService.GetHabitsAsync();
+        
         currentCount++;
     }
 }

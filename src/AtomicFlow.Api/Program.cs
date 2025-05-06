@@ -19,11 +19,10 @@ if (app.Environment.IsDevelopment())
 app.UseHttpsRedirection();
 
 
-app.MapGet("/", async (IRegisterUserCommandService commandService, HttpContext context) =>
+app.MapGet("/habits", (HttpContext context) =>
     {
-        await commandService.RegisterAsync(new RegisterUserRequest(
-            "TestUser", "test@test.com", "Test1231!"));
+        return Results.Ok("Good");
     })
-    .WithName("Root");
+    .WithName("Habits");
 
 app.Run();
