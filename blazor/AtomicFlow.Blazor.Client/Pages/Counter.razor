@@ -15,7 +15,7 @@
 
     private async Task IncrementCount()
     {
-        await HabitsService.GetHabitsAsync();
+        await HabitsService.CreateHabitAsync();
         
         currentCount++;
     }

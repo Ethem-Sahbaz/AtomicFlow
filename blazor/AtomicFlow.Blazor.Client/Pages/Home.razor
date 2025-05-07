@@ -1,7 +1,18 @@
 ﻿@page "/"
+@using AtomicFlow.Blazor.Client.Services
+@inject IHabitService HabitsService
 
-<PageTitle>Home</PageTitle>
+<PageTitle>Habits</PageTitle>
 
-<h1>Hello, world!</h1>
+<h2>Habits</h2>
 
-Welcome to your new app.
+<button class="btn btn-primary" @onclick="CreateHabitAsync">Add</button>
+
+@code
+{
+    private async Task CreateHabitAsync()
+    {
+        await HabitsService.CreateHabitAsync();
+    }
+    
+}

@@ -8,7 +8,6 @@ using Yarp.ReverseProxy.Transforms;
 
 var builder = WebApplication.CreateBuilder(args);
 
-
 builder.Services.AddRazorComponents()
     .AddInteractiveServerComponents()
     .AddInteractiveWebAssemblyComponents()
@@ -32,7 +31,7 @@ builder.Services.AddScoped<IHabitService, HabitsService>();
 
 builder.Services.AddHttpClient(nameof(HabitsService), config =>
 {
-    config.BaseAddress = new Uri("https://localhost:7141");
+    config.BaseAddress = new Uri(builder.Configuration["Urls:Host"]!);
 }).ConfigurePrimaryHttpMessageHandler<ForwarderServerHttpHandler>();
 
 var app = builder.Build();
@@ -81,7 +80,7 @@ app.MapGet("account/logout", async context =>
 });
 
 // Get destination url from appsettings.
-app.MapForwarder("/{**endpoint}", builder.Configuration["API:Url"]!, transformBuilder =>
+app.MapForwarder("{**endpoint}", builder.Configuration["Urls:API"]!, transformBuilder =>
 {
     transformBuilder.AddRequestTransform(async requestTransformContext =>
     {

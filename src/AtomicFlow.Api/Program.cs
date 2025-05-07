@@ -1,3 +1,4 @@
+using AtomicFlow.Api.Extensions;
 using AtomicFlow.Application;
 using AtomicFlow.Application.Features.Users.RegisterUser;
 using AtomicFlow.Infrastructure;
@@ -5,6 +6,8 @@ using AtomicFlow.Infrastructure;
 var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddOpenApi();
+// Provide assembly
+builder.Services.AddEndpoints([typeof(Program).Assembly]);
 builder.Services.AddHttpContextAccessor();
 builder.Services.AddApplication();
 builder.Services.AddInfrastructure();
@@ -18,11 +21,7 @@ if (app.Environment.IsDevelopment())
 
 app.UseHttpsRedirection();
 
+app.MapEndpoints();
 
-app.MapGet("/habits", (HttpContext context) =>
-    {
-        return Results.Ok("Good");
-    })
-    .WithName("Habits");
 
 app.Run();

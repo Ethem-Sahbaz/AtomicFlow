@@ -9,17 +9,13 @@ public sealed class HabitsService : IHabitService
         _httpClientFactory = httpClientFactory;
     }
 
-    public async Task GetHabitsAsync()
+    public async Task CreateHabitAsync()
     {
         HttpClient httpClient = _httpClientFactory.CreateClient(nameof(HabitsService));
 
-        HttpResponseMessage responseMessage = await httpClient.GetAsync("/habits");
+        // Testing
+        HttpResponseMessage responseMessage = await httpClient.PostAsync("habits", null);
         
         string json = await responseMessage.Content.ReadAsStringAsync();
     }
-}
-
-public interface IHabitService
-{
-    Task GetHabitsAsync();
 }
