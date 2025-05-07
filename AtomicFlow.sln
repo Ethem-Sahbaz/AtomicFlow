@@ -23,6 +23,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AtomicFlow.Blazor", "blazor
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AtomicFlow.Blazor.Client", "blazor\AtomicFlow.Blazor.Client\AtomicFlow.Blazor.Client.csproj", "{A62F0461-783A-4069-A0C1-35F8024E7089}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AtomicFlow.Contracts", "src\AtomicFlow.Contracts\AtomicFlow.Contracts.csproj", "{86C4A07E-4EA0-428D-B8B1-DC072DB42F9B}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -57,6 +59,10 @@ Global
 		{A62F0461-783A-4069-A0C1-35F8024E7089}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{A62F0461-783A-4069-A0C1-35F8024E7089}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{A62F0461-783A-4069-A0C1-35F8024E7089}.Release|Any CPU.Build.0 = Release|Any CPU
+		{86C4A07E-4EA0-428D-B8B1-DC072DB42F9B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{86C4A07E-4EA0-428D-B8B1-DC072DB42F9B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{86C4A07E-4EA0-428D-B8B1-DC072DB42F9B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{86C4A07E-4EA0-428D-B8B1-DC072DB42F9B}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -69,6 +75,7 @@ Global
 		{A567DBAF-319C-4E66-8EDB-484B5159CAC4} = {02EA681E-C7D8-13C7-8484-4AC65E1B71E8}
 		{DFB977F4-3426-497D-9079-76EE962C5944} = {BB4D97D2-7E92-4BDD-B69B-018F8D81273A}
 		{A62F0461-783A-4069-A0C1-35F8024E7089} = {BB4D97D2-7E92-4BDD-B69B-018F8D81273A}
+		{86C4A07E-4EA0-428D-B8B1-DC072DB42F9B} = {02EA681E-C7D8-13C7-8484-4AC65E1B71E8}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {E6E26FCE-8975-46B2-9C27-B624322EA70A}

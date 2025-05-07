@@ -12,6 +12,7 @@
 
     <ItemGroup>
       <ProjectReference Include="..\AtomicFlow.Application\AtomicFlow.Application.csproj" />
+      <ProjectReference Include="..\AtomicFlow.Contracts\AtomicFlow.Contracts.csproj" />
       <ProjectReference Include="..\AtomicFlow.Infrastructure\AtomicFlow.Infrastructure.csproj" />
       <ProjectReference Include="..\AtomicFlow.SharedKernel\AtomicFlow.SharedKernel.csproj" />
     </ItemGroup>

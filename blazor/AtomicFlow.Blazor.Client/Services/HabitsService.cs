@@ -1,3 +1,7 @@
+using System.Net.Http.Json;
+using System.Text.Json;
+using AtomicFlow.Contracts.Habits;
+
 namespace AtomicFlow.Blazor.Client.Services;
 
 public sealed class HabitsService : IHabitService
@@ -14,8 +18,10 @@ public sealed class HabitsService : IHabitService
         HttpClient httpClient = _httpClientFactory.CreateClient(nameof(HabitsService));
 
         // Testing
-        HttpResponseMessage responseMessage = await httpClient.PostAsync("habits", null);
+        var responseMessage = await httpClient.GetAsync("habits");
         
         string json = await responseMessage.Content.ReadAsStringAsync();
+
+        var habitResponses = JsonSerializer.Deserialize<GetHabitsResponse>(json, new JsonSerializerOptions { PropertyNameCaseInsensitive = true });
     }
 }
