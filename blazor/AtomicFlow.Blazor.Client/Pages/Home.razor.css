@@ -1,0 +1,30 @@
+.habit-card {
+    max-width: 100%;
+    margin: 20px auto;
+    padding: 20px;
+    background: #fff;
+    box-shadow: 0 0 8px rgba(0,0,0,0.1);
+    border-radius: 8px;
+}
+
+.heatmap {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    overflow-x: auto;
+    padding: 10px 0;
+}
+
+.heatmap-row {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    margin-right: 6px;
+}
+
+.heatmap-cell {
+    width: 12px;
+    height: 12px;
+    background-color: #0a58ca;
+    border-radius: 2px;
+}

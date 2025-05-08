@@ -13,15 +13,22 @@ public sealed class HabitsService : IHabitService
         _httpClientFactory = httpClientFactory;
     }
 
-    public async Task CreateHabitAsync()
+    public async Task<GetHabitsResponse?> CreateHabitAsync()
     {
         HttpClient httpClient = _httpClientFactory.CreateClient(nameof(HabitsService));
-
-        // Testing
+        
         var responseMessage = await httpClient.GetAsync("habits");
+
+        if (!responseMessage.IsSuccessStatusCode)
+        {
+            return null;
+        }
         
         string json = await responseMessage.Content.ReadAsStringAsync();
 
-        var habitResponses = JsonSerializer.Deserialize<GetHabitsResponse>(json, new JsonSerializerOptions { PropertyNameCaseInsensitive = true });
+        var habitResponses = JsonSerializer.Deserialize<GetHabitsResponse>(
+            json, new JsonSerializerOptions { PropertyNameCaseInsensitive = true });
+        
+        return habitResponses;
     }
 }

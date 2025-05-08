@@ -1,18 +1,40 @@
 ﻿@page "/"
 @using AtomicFlow.Blazor.Client.Services
+@using AtomicFlow.Contracts.Habits
 @inject IHabitService HabitsService
 
 <PageTitle>Habits</PageTitle>
 
-<h2>Habits</h2>
+<h1>Habits</h1>
 
-<button class="btn btn-primary" @onclick="CreateHabitAsync">Add</button>
+@if (GetHabitsResponse is not null)
+{
+    foreach (var habit in GetHabitsResponse.Items)
+    {
+        <div class="habit-card">
+            <h3>@habit.Name</h3>
+            <div class="heatmap">
+                @foreach (var day in Enum.GetValues(typeof(DaysResponse)))
+                {
+                    <div class="heatmap-row">
+                        @for (int i = 0; i < 10; i++)
+                        {
+                            <div class="heatmap-cell"></div>
+                        }
+                    </div>
+                }
+            </div>
+        </div>
+    }
+}
 
 @code
 {
-    private async Task CreateHabitAsync()
+    public GetHabitsResponse? GetHabitsResponse { get; set; }
+
+    protected override async Task OnInitializedAsync()
     {
-        await HabitsService.CreateHabitAsync();
+        var habitResponses = await HabitsService.CreateHabitAsync();
+        GetHabitsResponse = habitResponses;
     }
-    
 }
